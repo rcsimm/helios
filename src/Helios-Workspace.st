@@ -515,6 +515,10 @@ previous
 
 previous: aWidget
 	"for browser lists widget"
+!
+
+restoreContentFrom: aString
+	super contents: aString
 ! !
 
 !HLNavigationCodeWidget methodsFor: 'testing'!

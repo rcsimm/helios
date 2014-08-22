@@ -1490,6 +1490,23 @@ referencedClasses: []
 }),
 globals.HLNavigationCodeWidget);
 
+smalltalk.addMethod(
+smalltalk.method({
+selector: "restoreContentFrom:",
+protocol: 'accessing',
+fn: function (aString){
+var self=this;
+return smalltalk.withContext(function($ctx1) { 
+($ctx1.supercall = true, globals.HLNavigationCodeWidget.superclass.fn.prototype._contents_.apply(_st(self), [aString]));
+$ctx1.supercall = false;
+return self}, function($ctx1) {$ctx1.fill(self,"restoreContentFrom:",{aString:aString},globals.HLNavigationCodeWidget)})},
+args: ["aString"],
+source: "restoreContentFrom: aString\x0a\x09super contents: aString",
+messageSends: ["contents:"],
+referencedClasses: []
+}),
+globals.HLNavigationCodeWidget);
+
 
 smalltalk.addMethod(
 smalltalk.method({

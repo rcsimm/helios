@@ -667,11 +667,11 @@ protocol: 'reactions',
 fn: function (){
 var self=this;
 return smalltalk.withContext(function($ctx1) { 
-self._refresh();
+self._refreshWithoutLoosingChanges();
 return self}, function($ctx1) {$ctx1.fill(self,"onShowCommentToggled",{},globals.HLBrowserBottomWidget)})},
 args: [],
-source: "onShowCommentToggled\x0a\x09self refresh",
-messageSends: ["refresh"],
+source: "onShowCommentToggled\x0a\x09self refreshWithoutLoosingChanges",
+messageSends: ["refreshWithoutLoosingChanges"],
 referencedClasses: []
 }),
 globals.HLBrowserBottomWidget);
@@ -716,6 +716,28 @@ return self},
 args: ["aWidget"],
 source: "previous: aWidget\x0a\x09\x22For navigation\x22",
 messageSends: [],
+referencedClasses: []
+}),
+globals.HLBrowserBottomWidget);
+
+smalltalk.addMethod(
+smalltalk.method({
+selector: "refreshWithoutLoosingChanges",
+protocol: 'reactions',
+fn: function (){
+var self=this;
+var codeChanges;
+return smalltalk.withContext(function($ctx1) { 
+var $1;
+$1=self._codeWidget();
+$ctx1.sendIdx["codeWidget"]=1;
+codeChanges=_st($1)._contents();
+self._refresh();
+_st(self._codeWidget())._restoreContentFrom_(codeChanges);
+return self}, function($ctx1) {$ctx1.fill(self,"refreshWithoutLoosingChanges",{codeChanges:codeChanges},globals.HLBrowserBottomWidget)})},
+args: [],
+source: "refreshWithoutLoosingChanges\x0a\x09| codeChanges |\x0a\x09codeChanges := self codeWidget contents.\x0a\x09self refresh.\x0a\x09self codeWidget restoreContentFrom: codeChanges.",
+messageSends: ["contents", "codeWidget", "refresh", "restoreContentFrom:"],
 referencedClasses: []
 }),
 globals.HLBrowserBottomWidget);
@@ -971,16 +993,12 @@ fn: function (aBoolean){
 var self=this;
 function $HLShowCommentToggled(){return globals.HLShowCommentToggled||(typeof HLShowCommentToggled=="undefined"?nil:HLShowCommentToggled)}
 return smalltalk.withContext(function($ctx1) { 
-self._withChangesDo_((function(){
-return smalltalk.withContext(function($ctx2) {
 self["@showComment"]=aBoolean;
-self["@showComment"];
-return _st(self._announcer())._announce_(_st($HLShowCommentToggled())._new());
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)})}));
+_st(self._announcer())._announce_(_st($HLShowCommentToggled())._new());
 return self}, function($ctx1) {$ctx1.fill(self,"showComment:",{aBoolean:aBoolean},globals.HLBrowserModel)})},
 args: ["aBoolean"],
-source: "showComment: aBoolean\x0a\x09self withChangesDo: [\x0a\x09\x09showComment := aBoolean.\x0a\x09\x09self announcer announce: HLShowCommentToggled new ]",
-messageSends: ["withChangesDo:", "announce:", "announcer", "new"],
+source: "showComment: aBoolean\x0a\x09showComment := aBoolean.\x0a\x09self announcer announce: HLShowCommentToggled new",
+messageSends: ["announce:", "announcer", "new"],
 referencedClasses: ["HLShowCommentToggled"]
 }),
 globals.HLBrowserModel);

@@ -227,11 +227,18 @@ observeModel
 !HLBrowserBottomWidget methodsFor: 'reactions'!
 
 onShowCommentToggled
-	self refresh
+	self refreshWithoutLoosingChanges
 !
 
 onShowInstanceToggled
 	self refresh
+!
+
+refreshWithoutLoosingChanges
+	| codeChanges |
+	codeChanges := self codeWidget contents.
+	self refresh.
+	self codeWidget restoreContentFrom: codeChanges.
 ! !
 
 !HLBrowserBottomWidget methodsFor: 'rendering'!
@@ -265,9 +272,8 @@ showComment
 !
 
 showComment: aBoolean
-	self withChangesDo: [
-		showComment := aBoolean.
-		self announcer announce: HLShowCommentToggled new ]
+	showComment := aBoolean.
+	self announcer announce: HLShowCommentToggled new
 !
 
 showInstance
