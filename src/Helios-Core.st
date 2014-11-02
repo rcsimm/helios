@@ -173,10 +173,7 @@ selectedClass: aClass
 	(self selectedClass = aClass and: [ aClass isNil ]) 
 		ifTrue: [ ^ self ].
 	
-	self withChangesDo: [
-		selectedClass = aClass ifTrue: [ 
-			self selectedProtocol: nil ].
-    
+	self withChangesDo: [    
 		aClass 
    			ifNil: [ selectedClass := nil ]
     		ifNotNil: [
@@ -184,7 +181,9 @@ selectedClass: aClass
 				self showInstance 
    					ifTrue: [ selectedClass := aClass theNonMetaClass ]
      				ifFalse: [ selectedClass := aClass theMetaClass ] ].
-		self selectedProtocol: nil.
+	
+		selectedProtocol := nil.
+		self selectedProtocol: self allProtocol.
 		self announcer announce: (HLClassSelected on: self selectedClass) ]
 !
 
